@@ -9,23 +9,28 @@ export default class Menu extends React.Component {
         slides: [
             {
                 place: "Sala de Estar",
-                img: "Bbb-19.jpg"
+                img: "Bbb-19.jpg",
+                type: "Realities"
             },
             {
                 place: "Varanda",
-                img: "Bbb-19.jpg"
+                img: "Bbb-19.jpg",
+                type: "Realities"
             },
             {
                 place: "Piscina",
-                img: "Bbb-19.jpg"
+                img: "Bbb-19.jpg",
+                type: "Realities"
             },
             {
                 place: "Academia",
-                img: "Bbb-19.jpg"
+                img: "Bbb-19.jpg",
+                type: "Realities"
             },
             {
                 place: "Chuveiro",
-                img: "Bbb-19.jpg"
+                img: "Bbb-19.jpg",
+                type: "Realities"
             }
         ],
         slidesHidden: []
@@ -58,7 +63,6 @@ export default class Menu extends React.Component {
             slides: newSlides,
             slidesHidden: newSlidesHidden
         })
-        console.log(newSlides)
     }
     render() {
         const {
@@ -75,8 +79,10 @@ export default class Menu extends React.Component {
             style={{ backgroundImage: slides[0] ? `url(${require(`../../assets/${slides[0].img}`)})` : ""}}
             tabIndex={focused ? "0" : null}
             onKeyDown={this.handleKeyDown}>
-                <h5>Big Brother Brasil</h5>
-                <h1>{slides[0] ? slides[0].place : "" }</h1>
+                <div>
+                    <h5>Big Brother Brasil</h5>
+                    <h1>{slides[0] ? slides[0].place : "" }</h1>
+                </div>
                 <div>
                     <h5>Agora no BBB</h5>
                     <ul className={"carousel"}>
@@ -91,8 +97,8 @@ export default class Menu extends React.Component {
                         key={key} 
                         style={{ backgroundImage: `url(${require(`../../assets/${item.img}`)})`}}>
                             <div className={"item-content"} style={{opacity: key === 0 ? 0 : 1}}>
-                                <h5>REALITIES</h5>
-                                <p> {item.place} </p>
+                                <h5>{ item.type }</h5>
+                                <p> { item.place } </p>
                             </div>
                         </li>
                     )) : null} 

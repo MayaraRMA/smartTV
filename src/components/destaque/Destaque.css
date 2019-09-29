@@ -1,9 +1,51 @@
 .destaque{
-    background-color: rgba(200,200,200);
+    background-image: url(../../assets/banner.jpeg);
+    background-size: cover;
+    background-size: 100% 100%; 
+    color: #A09FA4;
+    box-shadow: inset 0px 0px 300px 0px rgba(0,0,0,0.75);
     width: 100%;
-    height: 100vw;
+    height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.focused{
-    background-color: rgba(100,100,100) !important;
+.destaque img {
+    width: 300px;
+}
+
+.destaque h3 {
+    font-size: 2em;
+    letter-spacing: 0.5px;
+    width: 605px;
+    line-height: 40px;
+    margin: 40px 0;
+    font-weight: 400;
+}
+
+.destaque-buttons button{
+    background-color: transparent;
+    border: 2px solid #A09FA4;
+    border-radius: 5px;
+    color: #A09FA4;
+    font-size: 1.5em;
+    padding: 10px 30px;
+    margin-right: 10px;
+    transition: .3s ease-in-out;
+}
+
+.destaque-buttons button .destaque-icon {
+    font-size: 16px;
+    margin-right: 10px;
+    margin-bottom: 2.5px;
+}
+
+.destaque-buttons button.selected {
+    color: #514f50;
+    border: 2px solid #ffffff;
+    background-color: #ffffff;
+    font-weight: bold;
+    padding: 15px 30px;
 }
