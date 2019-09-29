@@ -27,17 +27,27 @@ export default class Menu extends React.Component {
                 place: "Chuveiro",
                 img: "Bbb-19.jpg"
             }
-        ]
+        ],
+        slidesHidden: []
     }
 
     handleKeyDown = (e) => {
-        const { slides } = this.state;
-        let newSlides
+        const { slides, slidesHidden } = this.state;
+        let newSlides = [...slides]
+        let newSlidesHidden = [...slidesHidden]
+        let square
         switch(e.key){
             case("ArrowRight"):
-                newSlides = slides.shift()
+                if(newSlides.length > 1) {
+                  square = newSlides.shift()
+                  newSlidesHidden.push(square) 
+                }                     
                 break;
             case("ArrowLeft"):
+                if (newSlidesHidden.length > 0) {
+                    newSlides.unshift(newSlidesHidden[newSlidesHidden.length - 1])
+                    newSlidesHidden.pop()
+                }          
                 break;
             case("ArrowUp"):
             break;
@@ -45,12 +55,14 @@ export default class Menu extends React.Component {
                 break;
         }        
         this.setState({
-            slides: newSlides
+            slides: newSlides,
+            slidesHidden: newSlidesHidden
         })
+        console.log(newSlides)
     }
     render() {
         const {
-            slides
+            slides = []
         } = this.state;
         const {
             innerRef,
@@ -60,18 +72,18 @@ export default class Menu extends React.Component {
             <div 
             className={"trilho"} 
             ref={innerRef}
-            style={{ backgroundImage: `url(${require(`../../assets/${slides[0].img}`)})`}}
+            style={{ backgroundImage: slides[0] ? `url(${require(`../../assets/${slides[0].img}`)})` : ""}}
             tabIndex={focused ? "0" : null}
             onKeyDown={this.handleKeyDown}>
                 <h5>Big Brother Brasil</h5>
-                <h1>{slides[0].place}</h1>
+                <h1>{slides[0] ? slides[0].place : "" }</h1>
                 <div>
                     <h5>Agora no BBB</h5>
                     <ul className={"carousel"}>
                         <li className={"play"}>
                             <FontAwesomeIcon className={"play-icon"} icon={faPlay} /> 
                         </li>
-                        {slides.map((item,key) => (
+                        { slides.length > 0 ? slides.map((item,key) => (
                         <li 
                         className={classList({
                            slide : true
@@ -83,7 +95,7 @@ export default class Menu extends React.Component {
                                 <p> {item.place} </p>
                             </div>
                         </li>
-                    ))}
+                    )) : null} 
                     </ul>
                 </div>
             </div>

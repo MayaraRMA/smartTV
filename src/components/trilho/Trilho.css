@@ -5,6 +5,7 @@
     background-size: 100% 100%;
     background-size: cover;
     box-shadow: inset 0px -200px 300px 0px rgba(0,0,0,0.75);
+    transition: .4s ease-in-out;
 }
 
 .trilho h5 {
@@ -18,7 +19,7 @@
 }
 .carousel {
     display: flex;
-    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .play {

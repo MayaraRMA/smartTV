@@ -37,7 +37,7 @@ class App extends React.PureComponent {
       destaque
     } = this.state;
     return (
-      <div className="App" onKeyDown={this.handleKeyDown}>
+      <div className="App" >
         <Menu innerRef={this.menuComponent} collapsed={!menu}/>
         <div className="content">
           <Destaque innerRef={this.destaqueComponent} focused={destaque} />
