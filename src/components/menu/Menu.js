@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {classList} from '../../utils/classList'
 
 export default class Menu extends React.PureComponent {
-    state = {
-            
+    state = {          
         menu: [{
             text: "Busca",
             icon: faSearch,
@@ -88,7 +87,11 @@ export default class Menu extends React.PureComponent {
             innerRef
         } = this.props;
         return (
-            <nav ref={innerRef} className={collapsed ? "nav nav-collapsed" : "nav"} tabIndex={collapsed ? null : "0"} onKeyDown={this.handleKeyDown}>
+            <nav 
+            ref={innerRef} 
+            className={collapsed ? "nav nav-collapsed" : "nav"} 
+            tabIndex={collapsed ? null : "0"} 
+            onKeyDown={this.handleKeyDown}>
                 <ul>
                     {menu.map((item,key) => (
                         <li key={key} className={classList({

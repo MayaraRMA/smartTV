@@ -13,6 +13,7 @@ export default class Destaque extends PureComponent {
                 destaque: true,
                 focused: focused
             })} tabIndex={focused ? "0" : null}>
+                
             </div>
         )
     }

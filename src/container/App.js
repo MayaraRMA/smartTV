@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from '../components/menu/Menu';
 import Destaque from '../components/destaque/Destaque';
+import Trilho from '../components/trilho/Trilho';
 import { focusLogic } from '../utils/focusLogic';
 import "./App.css"
 
@@ -40,6 +41,7 @@ class App extends React.PureComponent {
         <Menu innerRef={this.menuComponent} collapsed={!menu}/>
         <div className="content">
           <Destaque innerRef={this.destaqueComponent} focused={destaque} />
+          <Trilho/>
         </div>
       </div>
     )
