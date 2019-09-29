@@ -31,6 +31,10 @@ class App extends React.PureComponent {
     }
   }
 
+  componentDidMount = () => {
+    this.destaqueComponent.current.focus();
+  }
+
   handleFocus = (value) => {
     let state = focusLogic(value ,this.state)
     this.setState(state)
