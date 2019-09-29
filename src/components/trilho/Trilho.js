@@ -55,6 +55,7 @@ export default class Menu extends React.Component {
                 }          
                 break;
             case("ArrowUp"):
+                this.props.changeFocus("destaque")
             break;
             default:
                 break;
@@ -76,10 +77,9 @@ export default class Menu extends React.Component {
             <div 
             className={"trilho"} 
             ref={innerRef}
-            style={{ backgroundImage: slides[0] ? `url(${require(`../../assets/${slides[0].img}`)})` : ""}}
             tabIndex={focused ? "0" : null}
             onKeyDown={this.handleKeyDown}>
-                <div>
+                <div className={ focused ? "" : "display-none"}>
                     <h5>Big Brother Brasil</h5>
                     <h1>{slides[0] ? slides[0].place : "" }</h1>
                 </div>

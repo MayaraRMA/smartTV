@@ -1,11 +1,6 @@
 .destaque{
-    background-image: url(../../assets/banner.jpeg);
-    background-size: cover;
-    background-size: 100% 100%; 
     color: #A09FA4;
-    box-shadow: inset 0px 0px 300px 0px rgba(0,0,0,0.75);
     width: 100%;
-    height: calc(100vh - 80px);
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -48,4 +43,8 @@
     background-color: #ffffff;
     font-weight: bold;
     padding: 15px 30px;
+}
+
+.trilhoFocused {
+    display: none;
 }

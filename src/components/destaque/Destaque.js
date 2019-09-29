@@ -63,12 +63,14 @@ export default class Destaque extends PureComponent {
         } = this.state;
         const {
             innerRef,
+            trilhoFocused,
             focused = true
         } = this.props;
         return (
             <div ref={innerRef} className={classList({
                 destaque: true,
-                focused: focused
+                focused: focused,
+                trilhoFocused: trilhoFocused 
             })} tabIndex={focused ? "0" : null}  onKeyDown={this.handleKeyDown}>
                 <div>
                     <img src={ destaqueImg } alt="icon-destaque"/>

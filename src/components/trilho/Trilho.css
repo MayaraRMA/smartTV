@@ -1,10 +1,6 @@
 .trilho {
-    min-height: calc(100vh - 80px);
     padding: 40px 0 40px 40px;
     color: #ffffff;
-    background-size: 100% 100%;
-    background-size: cover;
-    box-shadow: inset 0px -200px 300px 0px rgba(0,0,0,0.75);
     transition: .4s ease-in-out;
 }
 
@@ -20,6 +16,7 @@
 .carousel {
     display: flex;
     overflow-x: hidden;
+    position: relative;
 }
 
 .play {
@@ -58,4 +55,8 @@
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+.display-none {
+    display: none;
 }
