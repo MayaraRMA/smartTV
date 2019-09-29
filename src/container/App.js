@@ -10,9 +10,11 @@ class App extends React.PureComponent {
     super(props);
     this.menuComponent = React.createRef();
     this.destaqueComponent = React.createRef();
+    this.trilhoComponent = React.createRef();
     this.state = {
       menu: false,
       destaque: true,
+      trilho: false
     }
   }
 
@@ -21,27 +23,27 @@ class App extends React.PureComponent {
       this.menuComponent.current.focus();
     } else if(this.state.destaque){
       this.destaqueComponent.current.focus();
+    } else if(this.state.trilho){
+      this.trilhoComponent.current.focus();
     }
   }
 
-  handleKeyDown = (e) => {
-    let state = focusLogic(e.key,this.state)
-    this.setState({
-      menu: state.menu,
-      destaque: state.destaque
-    })
+  handleFocus = (value) => {
+    let state = focusLogic(value ,this.state)
+    this.setState(state)
   }
   render(){
     const {
       menu,
-      destaque
+      destaque,
+      trilho
     } = this.state;
     return (
       <div className="App" >
-        <Menu innerRef={this.menuComponent} collapsed={!menu}/>
+        <Menu innerRef={this.menuComponent} collapsed={!menu} changeFocus={ this.handleFocus }/>
         <div className="content">
-          <Destaque innerRef={this.destaqueComponent} focused={destaque} />
-          <Trilho/>
+          <Destaque innerRef={this.destaqueComponent} focused={destaque} changeFocus={ this.handleFocus } />
+          <Trilho innerRef={this.trilhoComponent} focused={trilho} changeFocus={ this.handleFocus } />     
         </div>
       </div>
     )

@@ -1,24 +1,31 @@
-export function focusLogic (key, state){
+export function focusLogic (value, state){
     let {
         menu,
-        destaque
+        destaque,
+        trilho
       } = state;
-      switch(key){
-        case("ArrowLeft"):
-            if(menu === false && destaque === true)
-                menu = true;
-                destaque = false;
+      switch(value){
+        case("destaque"):
+            menu = false;
+            destaque = true;
+            trilho = false;
             break;
-        case("ArrowRight"):
-            if(menu === true && destaque === false)
-                menu = false;
-                destaque = true;
+        case("trilho"):
+            menu = false;
+            destaque = false;
+            trilho = true;
             break;
+        case("menu"):
+            menu = true;
+            destaque = false;
+            trilho = false;
+        break;
         default:
             break;
       }
       return {
         menu: menu,
-        destaque: destaque
+        destaque: destaque,
+        trilho: trilho
       }
 }

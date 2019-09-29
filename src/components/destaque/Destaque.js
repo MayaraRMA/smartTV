@@ -33,10 +33,13 @@ export default class Destaque extends PureComponent {
                 break;
             case("ArrowLeft"):
                 hoverIndex -= 1;
-                if(hoverIndex < 0)
+                if(hoverIndex < 0) {
+                    this.props.changeFocus("menu")
                     hoverIndex = 0
+                }
                 break;
-            case("ArrowUp"):
+            case("ArrowDown"):
+                this.props.changeFocus("trilho")
             break;
             default:
                 break;
@@ -65,12 +68,12 @@ export default class Destaque extends PureComponent {
         return (
             <div ref={innerRef} className={classList({
                 destaque: true,
-                focused: true
-            })} tabIndex={focused ? "0" : null}>
+                focused: focused
+            })} tabIndex={focused ? "0" : null}  onKeyDown={this.handleKeyDown}>
                 <div>
                     <img src={ destaqueImg } alt="icon-destaque"/>
                     <h3>{ announce }</h3>
-                    <div className={"destaque-buttons"} onKeyDown={this.handleKeyDown}>
+                    <div className={"destaque-buttons"}>
                         { destaqueButtons.length > 0 ? destaqueButtons.map((item,key) => (
                         <button key={key} className={item.selected === true ? "selected" : null}>
                         { item.icon ? <FontAwesomeIcon className={"destaque-icon"} icon={faPlay} /> : null}

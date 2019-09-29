@@ -64,6 +64,9 @@ export default class Menu extends React.PureComponent {
                 if(hoverIndex < 0)
                     hoverIndex = 0
                 break;
+            case("ArrowRight"):
+                this.props.changeFocus("destaque")
+                break;
             default:
                 break;
         }
@@ -83,7 +86,7 @@ export default class Menu extends React.PureComponent {
             menu
         } = this.state,
         {
-            collapsed = true,
+            collapsed,
             innerRef
         } = this.props;
         return (
