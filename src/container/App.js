@@ -55,14 +55,13 @@ class App extends React.PureComponent {
           changeFocus={ this.handleFocus }
           lastFocus={lastFocus}/>
         <div className="content"
-        style={{ backgroundImage: trilho || lastFocus === "trilho" ? `url(${bbb19})` :`url(${banner})`}}
+        style={{ backgroundImage: (lastFocus === "trilho" && menu) || trilho ? `url(${bbb19})` :`url(${banner})`}}
         >
           <img className={"globoplay-icon"} src={globoplay} alt="globoplay"/>
           <Destaque 
             innerRef={this.destaqueComponent} 
             focused={destaque} 
             changeFocus={ this.handleFocus } 
-            trilhoFocused={trilho}
             lastFocus={lastFocus}/>
           <Trilho 
             innerRef={this.trilhoComponent} 

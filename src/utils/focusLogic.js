@@ -5,14 +5,13 @@ export function focusLogic (value, state){
         trilho,
         lastFocus
       } = state;
-      
-      
+          
       for (var i in state) {
         if (state[i] === true) {
             lastFocus = i
         }
       }
-      
+
       switch(value){
         case("destaque"):
             menu = false;

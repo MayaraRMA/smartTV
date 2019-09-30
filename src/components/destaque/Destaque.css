@@ -50,6 +50,8 @@
     padding: 15px 30px;
 }
 
-.trilhoFocused  {
-    display: none;
+.displayNone  {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }

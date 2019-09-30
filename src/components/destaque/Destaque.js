@@ -19,27 +19,40 @@ export default class Destaque extends PureComponent {
                 text: "Veja mais",
                 selected: false
             }
-        ]
+        ],
+        hideDestaque: false
+    }
+
+    componentDidUpdate = () => {
+        const { focused } = this.props
+        if (focused === true) {
+            this.setState({
+                hideDestaque: false
+            })
+        }
     }
 
     handleKeyDown = (e) => {
-        const { destaqueButtons } = this.state;
+        const { destaqueButtons, hideDestaque } = this.state;
         let selectedIndex = this.state.destaqueButtons.findIndex(item => item.selected === true);
+        let hide = hideDestaque;
         switch(e.key){
             case("ArrowRight"):
             selectedIndex += 1;
             if(selectedIndex > destaqueButtons.length - 1)
-                selectedIndex = destaqueButtons.length - 1
+                selectedIndex = destaqueButtons.length - 1;
                 break;
             case("ArrowLeft"):
                 selectedIndex -= 1;
                 if(selectedIndex < 0) {
-                    this.props.changeFocus("menu")
-                    selectedIndex = 0
+                    this.props.changeFocus("menu");
+                    selectedIndex = 0;
+                    hide = false
                 }
                 break;
             case("ArrowDown"):
-                this.props.changeFocus("trilho")
+                this.props.changeFocus("trilho");
+                hide = true
             break;
             default:
                 break;
@@ -51,7 +64,8 @@ export default class Destaque extends PureComponent {
                     item.selected = true
                 };
                 return item
-            })
+            }),
+            hideDestaque: hide
         })     
     }
 
@@ -59,19 +73,18 @@ export default class Destaque extends PureComponent {
         const {
             destaqueImg,
             announce,
-            destaqueButtons
+            destaqueButtons,
+            hideDestaque
         } = this.state;
         const {
             innerRef,
-            trilhoFocused,
-            lastFocus,
             focused = true
         } = this.props;
         return (
             <div ref={innerRef} className={classList({
                 destaque: true,
                 focused: focused,
-                trilhoFocused: trilhoFocused || lastFocus === "trilho"
+                displayNone:  hideDestaque
             })} tabIndex={focused ? "0" : null}  onKeyDown={this.handleKeyDown}>
                 <div>
                     <img src={ destaqueImg } alt="icon-destaque"/>
