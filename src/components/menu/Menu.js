@@ -50,7 +50,8 @@ export default class Menu extends React.PureComponent {
         this.handleKeyDown({key: "default"})
     }
     handleKeyDown = (e) => {
-        const { menu } = this.state;
+        const { menu } = this.state,
+        { lastFocus } = this.props
         let index = this.state.menu.findIndex(item => item.hovered === true);
         let hoverIndex = index;
         switch(e.key){
@@ -65,7 +66,7 @@ export default class Menu extends React.PureComponent {
                     hoverIndex = 0
                 break;
             case("ArrowRight"):
-                this.props.changeFocus("destaque")
+                this.props.changeFocus(lastFocus)
                 break;
             default:
                 break;

@@ -6,7 +6,7 @@ import { focusLogic } from '../utils/focusLogic';
 import banner from '../assets/banner.jpeg';
 import bbb19 from "../assets/Bbb-19.jpg";
 import globoplay from "../assets/globoplay.png";
-import "./App.css"
+import "./App.css";
 
 class App extends React.PureComponent {
   constructor(props){
@@ -17,7 +17,8 @@ class App extends React.PureComponent {
     this.state = {
       menu: false,
       destaque: true,
-      trilho: false
+      trilho: false,
+      lastFocus: ""
     }
   }
 
@@ -43,27 +44,31 @@ class App extends React.PureComponent {
     const {
       menu,
       destaque,
-      trilho
+      trilho,
+      lastFocus
     } = this.state;
     return (
       <div className="App" >
         <Menu 
           innerRef={this.menuComponent} 
           collapsed={!menu} 
-          changeFocus={ this.handleFocus }/>
+          changeFocus={ this.handleFocus }
+          lastFocus={lastFocus}/>
         <div className="content"
-        style={{ backgroundImage: trilho ? `url(${bbb19})` :`url(${banner})`}}
+        style={{ backgroundImage: trilho || lastFocus === "trilho" ? `url(${bbb19})` :`url(${banner})`}}
         >
           <img className={"globoplay-icon"} src={globoplay} alt="globoplay"/>
           <Destaque 
             innerRef={this.destaqueComponent} 
             focused={destaque} 
             changeFocus={ this.handleFocus } 
-            trilhoFocused={trilho} />
+            trilhoFocused={trilho}
+            lastFocus={lastFocus}/>
           <Trilho 
             innerRef={this.trilhoComponent} 
             focused={trilho} 
-            changeFocus={ this.handleFocus } />     
+            changeFocus={ this.handleFocus }
+            lastFocus={lastFocus}/>     
         </div>
       </div>
     )

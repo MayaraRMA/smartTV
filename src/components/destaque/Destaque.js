@@ -24,18 +24,18 @@ export default class Destaque extends PureComponent {
 
     handleKeyDown = (e) => {
         const { destaqueButtons } = this.state;
-        let hoverIndex = this.state.destaqueButtons.findIndex(item => item.selected === true);
+        let selectedIndex = this.state.destaqueButtons.findIndex(item => item.selected === true);
         switch(e.key){
             case("ArrowRight"):
-            hoverIndex += 1;
-            if(hoverIndex > destaqueButtons.length - 1)
-                hoverIndex = destaqueButtons.length - 1
+            selectedIndex += 1;
+            if(selectedIndex > destaqueButtons.length - 1)
+                selectedIndex = destaqueButtons.length - 1
                 break;
             case("ArrowLeft"):
-                hoverIndex -= 1;
-                if(hoverIndex < 0) {
+                selectedIndex -= 1;
+                if(selectedIndex < 0) {
                     this.props.changeFocus("menu")
-                    hoverIndex = 0
+                    selectedIndex = 0
                 }
                 break;
             case("ArrowDown"):
@@ -47,7 +47,7 @@ export default class Destaque extends PureComponent {
         this.setState({
             destaqueButtons: destaqueButtons.map((item,key) => {
                 item.selected = false;
-                if(key === hoverIndex){
+                if(key === selectedIndex){
                     item.selected = true
                 };
                 return item
@@ -64,13 +64,14 @@ export default class Destaque extends PureComponent {
         const {
             innerRef,
             trilhoFocused,
+            lastFocus,
             focused = true
         } = this.props;
         return (
             <div ref={innerRef} className={classList({
                 destaque: true,
                 focused: focused,
-                trilhoFocused: trilhoFocused 
+                trilhoFocused: trilhoFocused || lastFocus === "trilho"
             })} tabIndex={focused ? "0" : null}  onKeyDown={this.handleKeyDown}>
                 <div>
                     <img src={ destaqueImg } alt="icon-destaque"/>

@@ -21,6 +21,10 @@
     font-weight: 400;
 }
 
+.destaque-buttons {
+    min-height: 65px;
+}
+
 .destaque-buttons button{
     background-color: transparent;
     border: 2px solid #A09FA4;
@@ -46,6 +50,6 @@
     padding: 15px 30px;
 }
 
-.trilhoFocused {
+.trilhoFocused  {
     display: none;
 }

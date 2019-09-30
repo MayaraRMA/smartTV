@@ -2,8 +2,17 @@ export function focusLogic (value, state){
     let {
         menu,
         destaque,
-        trilho
+        trilho,
+        lastFocus
       } = state;
+      
+      
+      for (var i in state) {
+        if (state[i] === true) {
+            lastFocus = i
+        }
+      }
+      
       switch(value){
         case("destaque"):
             menu = false;
@@ -23,9 +32,11 @@ export function focusLogic (value, state){
         default:
             break;
       }
+      
       return {
         menu: menu,
         destaque: destaque,
-        trilho: trilho
+        trilho: trilho,
+        lastFocus: lastFocus
       }
 }

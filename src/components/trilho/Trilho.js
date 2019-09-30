@@ -2,7 +2,7 @@ import React from "react";
 import  "./Trilho.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
-import {classList} from '../../utils/classList'
+import {classList} from '../../utils/classList';
 
 export default class Menu extends React.Component {
     state = {
@@ -52,6 +52,9 @@ export default class Menu extends React.Component {
                 if (newSlidesHidden.length > 0) {
                     newSlides.unshift(newSlidesHidden[newSlidesHidden.length - 1])
                     newSlidesHidden.pop()
+                }
+                if (newSlidesHidden.length === 0) {
+                    this.props.changeFocus("menu")
                 }          
                 break;
             case("ArrowUp"):
@@ -71,7 +74,8 @@ export default class Menu extends React.Component {
         } = this.state;
         const {
             innerRef,
-            focused = true
+            focused,
+            lastFocus
         } = this.props;
         return(
             <div 
@@ -79,15 +83,15 @@ export default class Menu extends React.Component {
             ref={innerRef}
             tabIndex={focused ? "0" : null}
             onKeyDown={this.handleKeyDown}>
-                <div className={ focused ? "" : "display-none"}>
+                <div className={ focused || lastFocus === "trilho" ? "" : "display-none"}>
                     <h5>Big Brother Brasil</h5>
                     <h1>{slides[0] ? slides[0].place : "" }</h1>
                 </div>
                 <div>
                     <h5>Agora no BBB</h5>
                     <ul className={"carousel"}>
-                        <li className={"play"}>
-                            <FontAwesomeIcon className={"play-icon"} icon={faPlay} /> 
+                        <li className={focused ? "play" : null}>
+                            <FontAwesomeIcon className={focused ? "play-icon" : "display-none"} icon={faPlay} /> 
                         </li>
                         { slides.length > 0 ? slides.map((item,key) => (
                         <li 
